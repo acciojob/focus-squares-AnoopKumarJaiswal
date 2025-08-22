@@ -1,23 +1,19 @@
-// your JS code here. If required.
-document.addEventListener('DOMContentLoaded', () => {
-  const boxes = document.querySelectorAll('.square');
-  const COFFEE = '#6F4E37';
-  const LAVENDER = '#E6E6FA';
+let boxes = document.getElementsByClassName("square");
 
-  // safety: ensure default is lavender
-  boxes.forEach(b => b.style.backgroundColor = LAVENDER);
-
-  boxes.forEach((box, idx) => {
-    // use mouseover/mouseout (bubbling) so test runners catch them
-    box.addEventListener('mouseover', () => {
-      boxes.forEach((b, j) => {
-        b.style.backgroundColor = (j === idx) ? LAVENDER : COFFEE; // rest to coffee
-      });
-    });
-
-    box.addEventListener('mouseout', () => {
-      // when leaving a box, reset all to lavender
-      boxes.forEach(b => b.style.backgroundColor = LAVENDER);
-    });
+for (let i = 0; i < boxes.length; i++) {
+  boxes[i].addEventListener("mouseover", () => {
+    for (let j = 0; j < boxes.length; j++) {
+      if (i !== j) {
+        boxes[j].style.backgroundColor = "#6F4E37"; // Coffee
+      }
+    }
   });
-});
+
+  boxes[i].addEventListener("mouseout", () => {
+    for (let j = 0; j < boxes.length; j++) {
+      if (i !== j) {
+        boxes[j].style.backgroundColor = "#E6E6FA"; // Lavender
+      }
+    }
+  });
+}
